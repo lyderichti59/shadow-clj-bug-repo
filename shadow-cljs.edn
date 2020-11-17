@@ -20,4 +20,13 @@
             :asset-path "."
             :modules {:browser-main {:entries [browser.main]
                                      :init-fn browser.main/init}}
-            :build-hooks [(_build_hooks.browser/copy-index)]}}}
+            :build-hooks [(_build_hooks.browser/copy-index)]}
+  ; https://shadow-cljs.github.io/docs/UsersGuide.html#target-browser
+  :undefined-reload-hook {:target :browser
+                          :output-dir "build/browser"
+                          :asset-path "."
+                          :modules {:browser-main {:entries [browser.main]
+                                                   :init-fn browser.main/init}}
+                          :build-hooks [(_build_hooks.browser/copy-index)]
+                          ;Defining an unresolvable :after-load hook
+                          :devtools {:after-load undefined.ns/hook}}}}
